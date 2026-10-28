@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNITOR — Raqamli Ta'lim Platformasi</title>
+    <title>EduTutor — Raqamli Ta'lim Platformasi</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -332,14 +332,14 @@
     <header>
         <div class="logo">
             <i class="fa-solid fa-graduation-cap"></i>
-            <span>UNITOR</span>
+            <span>EduTutor</span>
         </div>
         <div class="role-switch-container">
             <button class="role-btn active" id="btn-student" onclick="switchRole('student')">
                 <i class="fa-solid fa-user-graduate"></i> Talaba
             </button>
             <button class="role-btn" id="btn-tutor" onclick="switchRole('tutor')">
-                <i class="fa-solid fa-chalkboard-user"></i> Tyutor
+                <i class="fa-solid fa-chalkboard-user"></i> Tyutor: Avazbek Azimov
             </button>
         </div>
     </header>
@@ -378,7 +378,7 @@
         <!-- Dashboard Layout -->
         <div class="content-grid">
             
-            <!-- Side Panel (Dynamic: Control for Tutor, Profile for Student) -->
+            <!-- Side Panel -->
             <div class="glass-panel" id="side-panel">
                 <div class="panel-header">
                     <span class="panel-title" id="panel-action-title">
@@ -397,27 +397,27 @@
                     </div>
                     <div class="form-group">
                         <label>Sarlavha</label>
-                        <input type="text" id="post-title" placeholder="Masalan: 2-Laboratoriya ishi" required>
+                        <input type="text" id="post-title" placeholder="Masalan: 1-Amaliy topshiriq" required>
                     </div>
                     <div class="form-group">
                         <label>Mavzu batafsil</label>
-                        <textarea id="post-content" rows="4" placeholder="Topshirish tartibi va batafsil ko'rsatmalar..." required></textarea>
+                        <textarea id="post-content" rows="4" placeholder="Batafsil ko'rsatmalar va topshirish muddati..." required></textarea>
                     </div>
                     <button type="submit" class="btn-submit">
                         <i class="fa-solid fa-paper-plane"></i> Chop etish
                     </button>
                 </form>
 
-                <!-- Student Info Notice (hidden by default) -->
+                <!-- Student Info Notice -->
                 <div id="student-notice" style="display: none; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
-                    <p><i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> Siz talaba rejimidasiz. Barcha muhim topshiriq va tyutor e'lonlarini o'ng tarafdagi lentada kuzatib borishingiz mumkin.</p>
+                    <p><i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> Siz talaba rejimidasiz. Tyutor Avazbek Azimov tomonidan yuklangan barcha yangilik va topshiriqlarni kuzatib boring.</p>
                 </div>
             </div>
 
             <!-- Feed Panel -->
             <div class="glass-panel">
                 <div class="panel-header">
-                    <span class="panel-title"><i class="fa-solid fa-stream"></i> Guruh muloqot xonasi</span>
+                    <span class="panel-title"><i class="fa-solid fa-stream"></i> EduTutor Muloqot va Xabarlar</span>
                 </div>
 
                 <div class="feed-search">
@@ -442,32 +442,30 @@
             {
                 id: 1,
                 type: "E'lon",
-                title: "Dars xonasi o'zgardi",
-                content: "Hurmatli talabalar, ertangi AI loyihalari darsi 2-binoning 304-xonasida bo'lib o'tadi.",
-                author: "Fazliddin F. (Tyutor)",
-                date: "2026-08-30 18:30"
+                title: "O'quv xonasi haqida muhim eslatma",
+                content: "Hurmatli talabalar, ertangi amaliy mashg'ulot 2-bino 304-auditoriyada bo'lib o'tadi.",
+                author: "Avazbek Azimov 👨‍🏫",
+                date: "2026-10-28 08:30"
             },
             {
                 id: 2,
                 type: "Topshiriq",
-                title: "Python-Flet ilova tayyorlash",
-                content: "UNITOR loyihasi uchun birinchi veb prototipni tayyorlab, GitHub Pages-ga joylashtiring. Muddat: Juma kunigacha.",
-                author: "Fazliddin F. (Tyutor)",
-                date: "2026-08-30 14:15"
+                title: "Dasturiy prototip topshirig'i",
+                content: "EduTutor veb-platformasi bo'yicha berilgan topshiriqlarni yakunlab, hisobotni tayyorlang. Muddat: Shanbagacha.",
+                author: "Avazbek Azimov 👨‍🏫",
+                date: "2026-10-28 08:00"
             }
         ];
 
-        // Storage Initialization
         function getPosts() {
-            const data = localStorage.getItem('unitor_v2_posts');
+            const data = localStorage.getItem('edututor_posts');
             return data ? JSON.parse(data) : initialPosts;
         }
 
         function savePosts(posts) {
-            localStorage.setItem('unitor_v2_posts', JSON.stringify(posts));
+            localStorage.setItem('edututor_posts', JSON.stringify(posts));
         }
 
-        // Switch System Roles (Tutor/Student)
         function switchRole(role) {
             currentRole = role;
             document.getElementById('btn-student').classList.toggle('active', role === 'student');
@@ -484,11 +482,10 @@
             } else {
                 postForm.style.display = 'none';
                 studentNotice.style.display = 'block';
-                panelTitle.innerHTML = `<i class="fa-solid fa-user-check"></i> Mening Holatim`;
+                panelTitle.innerHTML = `<i class="fa-solid fa-user-check"></i> Talaba Paneli`;
             }
         }
 
-        // Add New Post Logic
         function handlePostSubmit(e) {
             e.preventDefault();
             const type = document.getElementById('post-type').value;
@@ -500,7 +497,7 @@
                 type: type,
                 title: title,
                 content: content,
-                author: "Fazliddin F. (Tyutor)",
+                author: "Avazbek Azimov 👨‍🏫",
                 date: new Date().toISOString().replace('T', ' ').substring(0, 16)
             };
 
@@ -508,14 +505,12 @@
             posts.unshift(newPost);
             savePosts(posts);
 
-            // Reset form
             document.getElementById('post-title').value = '';
             document.getElementById('post-content').value = '';
 
             renderPosts();
         }
 
-        // Render Feed Logic
         function renderPosts() {
             const container = document.getElementById('feed-container');
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
@@ -526,7 +521,6 @@
                 p.content.toLowerCase().includes(searchQuery)
             );
 
-            // Update stats
             document.getElementById('stat-posts-count').innerText = posts.length + " ta";
 
             if(filteredPosts.length === 0) {
@@ -546,15 +540,14 @@
                     <div class="post-body">${post.content}</div>
                     <div class="post-footer">
                         <div class="author-info">
-                            <i class="fa-solid fa-user-shield" style="color: var(--primary)"></i> ${post.author}
+                            <i class="fa-solid fa-chalkboard-user" style="color: var(--primary)"></i> ${post.author}
                         </div>
-                        <div><i class="fa-regular fa-bookmark"></i> UNITOR Hub</div>
+                        <div><i class="fa-solid fa-shield-halved"></i> EduTutor Hub</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Initial setup execution
         switchRole('student');
         renderPosts();
     </script>
