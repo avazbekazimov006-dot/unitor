@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSphere Pro — Barcha O'qituvchi va Talabalar Ekotizimi</title>
+    <title>EduSphere Pro — Ochiq Ta'lim Tizimi</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,7 +16,7 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --bg-dark: #0b0f19;
-            --card-bg: rgba(23, 32, 54, 0.7);
+            --card-bg: rgba(23, 32, 54, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
@@ -39,9 +39,8 @@
             min-height: 100vh;
         }
 
-        /* Top Navbar */
         header {
-            background: rgba(11, 15, 25, 0.85);
+            background: rgba(11, 15, 25, 0.9);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
             position: sticky;
@@ -57,7 +56,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #818cf8, #38bdf8);
             -webkit-background-clip: text;
@@ -93,14 +92,13 @@
             box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
         }
 
-        /* Container Layout */
         .wrapper {
             max-width: 1280px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
         }
 
         @media (max-width: 960px) {
@@ -109,7 +107,6 @@
             }
         }
 
-        /* Sidebar Navigation & Filters */
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -130,7 +127,7 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
             color: var(--text-primary);
         }
 
@@ -157,17 +154,15 @@
             border-color: rgba(99, 102, 241, 0.3);
         }
 
-        /* Main Workspace */
         .workspace {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        /* Platform Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
         }
 
@@ -205,7 +200,6 @@
             font-weight: 700;
         }
 
-        /* Form Inputs */
         .form-group {
             margin-bottom: 1rem;
         }
@@ -215,7 +209,6 @@
             font-size: 0.8rem;
             color: var(--text-secondary);
             margin-bottom: 6px;
-            font-weight: 500;
         }
 
         input, textarea, select {
@@ -253,7 +246,25 @@
             background: var(--primary-hover);
         }
 
-        /* Feed Elements */
+        .btn-export {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-export:hover {
+            background: var(--success);
+            color: #fff;
+        }
+
         .feed-container {
             display: flex;
             flex-direction: column;
@@ -265,11 +276,6 @@
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 1.25rem;
-        }
-
-        .feed-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-2px);
         }
 
         .feed-top {
@@ -291,9 +297,6 @@
         .feed-teacher {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .feed-title {
@@ -314,6 +317,7 @@
             gap: 10px;
             border-top: 1px solid var(--card-border);
             padding-top: 10px;
+            flex-wrap: wrap;
         }
 
         .btn-outline {
@@ -325,6 +329,9 @@
             font-size: 0.8rem;
             cursor: pointer;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .btn-outline:hover {
@@ -332,19 +339,52 @@
             border-color: var(--text-secondary);
         }
 
-        /* Interactive Quiz Card */
-        .quiz-option {
-            background: rgba(11, 15, 25, 0.5);
-            border: 1px solid var(--card-border);
-            padding: 8px 12px;
-            border-radius: 8px;
-            margin: 6px 0;
-            cursor: pointer;
-            font-size: 0.85rem;
+        /* Modal oynalar */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 1rem;
         }
 
-        .quiz-option:hover {
-            border-color: var(--primary);
+        .modal-content {
+            background: #172036;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .notice-alert {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
         }
     </style>
 </head>
@@ -367,28 +407,30 @@
 
     <div class="wrapper">
         
-        <!-- Chap Panel: Fanlar va O'qituvchilar filtri -->
+        <!-- Chap menyu -->
         <div class="sidebar">
             <div class="card">
-                <div class="card-header"><i class="fa-solid fa-layer-group"></i> Fanlar Bo'yicha</div>
-                <button class="filter-btn active" onclick="filterSubject('all')">
+                <div class="card-header">
+                    <span><i class="fa-solid fa-layer-group"></i> Fanlar</span>
+                </div>
+                <button class="filter-btn active" onclick="filterSubject('all', this)">
                     <span>Barcha Fanlar</span> <span id="count-all">0</span>
                 </button>
-                <button class="filter-btn" onclick="filterSubject('Dasturlash')">
+                <button class="filter-btn" onclick="filterSubject('Dasturlash', this)">
                     <span>Dasturlash (IT)</span> <span id="count-it">0</span>
                 </button>
-                <button class="filter-btn" onclick="filterSubject('Oliy Matematika')">
+                <button class="filter-btn" onclick="filterSubject('Oliy Matematika', this)">
                     <span>Oliy Matematika</span> <span id="count-math">0</span>
                 </button>
-                <button class="filter-btn" onclick="filterSubject('Fizika')">
+                <button class="filter-btn" onclick="filterSubject('Fizika', this)">
                     <span>Fizika</span> <span id="count-physics">0</span>
                 </button>
-                <button class="filter-btn" onclick="filterSubject('Kiberxavfsizlik')">
+                <button class="filter-btn" onclick="filterSubject('Kiberxavfsizlik', this)">
                     <span>Kiberxavfsizlik</span> <span id="count-sec">0</span>
                 </button>
             </div>
 
-            <!-- O'qituvchi boshqaruv paneli -->
+            <!-- O'qituvchi yangi dars qo'shishi -->
             <div class="card" id="teacher-tools" style="display: none;">
                 <div class="card-header"><i class="fa-solid fa-folder-plus"></i> Yangi Dars / Vazifa</div>
                 <form id="action-form" onsubmit="createEntry(event)">
@@ -406,20 +448,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Turini tanlang</label>
+                        <label>Turi</label>
                         <select id="entry-type">
-                            <option value="Vazifa">Amaliy Topshiriq / Laboratoriya</option>
-                            <option value="Material">Darslik / Ma'ruza Slaydi</option>
-                            <option value="E'lon">Muhim Xabarnoma</option>
+                            <option value="Vazifa">Amaliy Vazifa</option>
+                            <option value="Material">Darslik / Ma'ruza</option>
+                            <option value="Test">Tezkor Test</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Mavzu / Topshiriq Nomi</label>
-                        <input type="text" id="entry-title" placeholder="Masalan: 3-Laboratoriya ishi" required>
+                        <label>Mavzu nomi</label>
+                        <input type="text" id="entry-title" placeholder="Mavzuni yozing..." required>
                     </div>
                     <div class="form-group">
-                        <label>Tavsif va Yo'riqnoma</label>
-                        <textarea id="entry-content" rows="3" placeholder="Talabalar uchun ko'rsatmalar..." required></textarea>
+                        <label>Batafsil matn yoki Havola</label>
+                        <textarea id="entry-content" rows="3" placeholder="Yo'riqnoma yoki Google Drive / GitHub havolasi..." required></textarea>
                     </div>
                     <button type="submit" class="btn-action">
                         <i class="fa-solid fa-cloud-arrow-up"></i> Tizimga Joylash
@@ -427,30 +469,22 @@
                 </form>
             </div>
 
-            <!-- Reyting (Leaderboard) -->
+            <!-- Reyting jadvali -->
             <div class="card">
-                <div class="card-header"><i class="fa-solid fa-trophy" style="color: var(--warning);"></i> Top Talabalar</div>
-                <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>🥇 Akmal Rustamov</span>
-                        <b style="color: var(--success);">98 ball</b>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>🥈 Madina Karimova</span>
-                        <b style="color: var(--success);">95 ball</b>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>🥉 Jasur Ergashev</span>
-                        <b style="color: var(--success);">92 ball</b>
-                    </div>
+                <div class="card-header">
+                    <span><i class="fa-solid fa-trophy" style="color: var(--warning);"></i> Top Talabalar</span>
+                </div>
+                <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 10px;" id="leaderboard-list">
+                    <!-- Dinamik ravishda chiqadi -->
                 </div>
             </div>
         </div>
 
-        <!-- O'ng Tomon: Asosiy Maydon -->
+        <!-- O'ng asosiy panel -->
         <div class="workspace">
             
-            <!-- Statistika ko'rsatkichlari -->
+            <div id="status-alert" class="notice-alert"></div>
+
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
@@ -473,43 +507,78 @@
                         <i class="fa-solid fa-book-open"></i>
                     </div>
                     <div>
-                        <div class="stat-title">Topshiriqlar</div>
+                        <div class="stat-title">Materiallar</div>
                         <div class="stat-val" id="total-entries">0 ta</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Materiallar va Topshiriqlar Lentalari -->
+            <!-- Lenta -->
             <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px;">
                     <div class="card-header" style="margin-bottom: 0;">
                         <i class="fa-solid fa-graduation-cap"></i> Markaziy Ta'lim Oqimi
                     </div>
-                    <input type="text" id="search-box" placeholder="Qidiruv..." style="width: 220px;" oninput="renderWorkspace()">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="search-box" placeholder="Qidirish..." style="width: 180px;" oninput="renderWorkspace()">
+                        <button class="btn-export" onclick="exportDataCSV()">
+                            <i class="fa-solid fa-file-excel"></i> Eksport (CSV)
+                        </button>
+                    </div>
                 </div>
 
-                <div class="feed-container" id="workspace-feed">
-                    <!-- Dinamik ravishda postlar chiqadi -->
-                </div>
+                <div class="feed-container" id="workspace-feed"></div>
             </div>
 
         </div>
 
     </div>
 
+    <!-- 1. MATERIALNI KO'RISH MODALI -->
+    <div class="modal" id="view-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('view-modal')">&times;</button>
+            <h3 id="modal-title" style="margin-bottom: 8px;"></h3>
+            <p id="modal-author" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px;"></p>
+            <div id="modal-body" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 1.5rem; white-space: pre-wrap;"></div>
+            <button class="btn-action" onclick="closeModal('view-modal')">Yopish</button>
+        </div>
+    </div>
+
+    <!-- 2. JAVOB TOPSHIRISH MODALI -->
+    <div class="modal" id="submit-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('submit-modal')">&times;</button>
+            <h3 id="submit-task-title" style="margin-bottom: 6px;">Topshiriqni topshirish</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px;">Vazifa yechimi yoki fayl havolasini yuboring.</p>
+            <form onsubmit="handleTaskSubmit(event)">
+                <input type="hidden" id="submit-item-id">
+                <div class="form-group">
+                    <label>Talaba Ism-Familiyasi</label>
+                    <input type="text" id="student-name" placeholder="Masalan: Jasur Ergashev" required>
+                </div>
+                <div class="form-group">
+                    <label>Javob matni yoki GitHub/Drive havolasi</label>
+                    <textarea id="student-submission" rows="3" placeholder="https://github.com/... yoki yechim matni" required></textarea>
+                </div>
+                <button type="submit" class="btn-action"><i class="fa-solid fa-paper-plane"></i> Javobni Yuborish</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         let currentSubject = 'all';
         let currentRole = 'student';
 
-        // Boshlang'ich universal ma'lumotlar
+        // Standart boshlang'ich ma'lumotlar
         const defaultData = [
             {
                 id: 1,
                 subject: "Dasturlash",
                 type: "Vazifa",
                 teacher: "Avazbek Azimov 👨‍🏫",
-                title: "Python orqali ma'lumotlar bazasi bilan ishlash",
-                desc: "SQLite va PostgreSQL bazalariga ulanish hamda CRUD amallarini bajarish bo'yicha amaliy ish topshirig'i. Bajarish muddati: 3 kun.",
+                title: "Python ma'lumotlar bazasi (CRUD amallari)",
+                desc: "SQLite yoki PostgreSQL bazasiga ulanish va foydalanuvchilarni qo'shish, yangilash hamda o'chirish kodini GitHub repozitoriyga yuklang.",
                 date: "2026-10-30"
             },
             {
@@ -517,19 +586,26 @@
                 subject: "Oliy Matematika",
                 type: "Material",
                 teacher: "Dots. N. Qodirov",
-                title: "Differensial tenglamalar: 4-Ma'ruza taqdimoti",
-                desc: "Ushbu faylda yuqori tartibli chiziqli differensial tenglamalar va ularni integrallash usullari batafsil keltirilgan.",
+                title: "Differensial tenglamalar: 4-Ma'ruza",
+                desc: "Ushbu ma'ruzada yuqori tartibli chiziqli differensial tenglamalar va Koshi masalasini yechish usullari ko'rsatilgan.",
                 date: "2026-10-29"
             },
             {
                 id: 3,
                 subject: "Kiberxavfsizlik",
-                type: "E'lon",
+                type: "Vazifa",
                 teacher: "Prof. S. Aliyev",
-                title: "Xalqaro CTF tanloviga saralash",
-                desc: "Kiberxavfsizlik bo'yicha qiziquvchi barcha kurs talabalari uchun saralash bosqichi boshlandi. Ro'yxatdan o'ting.",
+                title: "Tarmoq paketlarini tahlil qilish (Wireshark)",
+                desc: "Berilgan .pcap fayldagi shifrlanmagan parollarni topib, qisqa hisobot yozib yuklang.",
                 date: "2026-10-28"
             }
+        ];
+
+        // Talabalar reytingi bazasi
+        let leaderboard = [
+            { name: "Akmal Rustamov", score: 98 },
+            { name: "Madina Karimova", score: 95 },
+            { name: "Jasur Ergashev", score: 92 }
         ];
 
         function getData() {
@@ -541,6 +617,13 @@
             localStorage.setItem('edusphere_entries', JSON.stringify(data));
         }
 
+        function showAlert(msg) {
+            const el = document.getElementById('status-alert');
+            el.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${msg}`;
+            el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, 3500);
+        }
+
         function setRole(role) {
             currentRole = role;
             document.getElementById('btn-student').classList.toggle('active', role === 'student');
@@ -548,10 +631,10 @@
             document.getElementById('teacher-tools').style.display = (role === 'teacher') ? 'block' : 'none';
         }
 
-        function filterSubject(sub) {
+        function filterSubject(sub, btn) {
             currentSubject = sub;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
             renderWorkspace();
         }
 
@@ -579,7 +662,76 @@
 
             document.getElementById('entry-title').value = '';
             document.getElementById('entry-content').value = '';
+            showAlert("Yangi dars/topshiriq tizimga muvaffaqiyatli qo'shildi!");
             renderWorkspace();
+        }
+
+        // Modal funksiyalari
+        function openViewModal(id) {
+            const data = getData();
+            const item = data.find(d => d.id == id);
+            if(!item) return;
+
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-author').innerText = `${item.subject} • ${item.teacher} • ${item.date}`;
+            document.getElementById('modal-body').innerText = item.desc;
+            document.getElementById('view-modal').style.display = 'flex';
+        }
+
+        function openSubmitModal(id, title) {
+            document.getElementById('submit-item-id').value = id;
+            document.getElementById('submit-task-title').innerText = `"${title}" bo'yicha topshirish`;
+            document.getElementById('submit-modal').style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function handleTaskSubmit(e) {
+            e.preventDefault();
+            const studentName = document.getElementById('student-name').value;
+            closeModal('submit-modal');
+            
+            // Talaba ballini oshirish va reytingga qo'shish
+            let existing = leaderboard.find(l => l.name.toLowerCase() === studentName.toLowerCase());
+            if(existing) {
+                existing.score += 5;
+            } else {
+                leaderboard.push({ name: studentName, score: 85 });
+            }
+            leaderboard.sort((a,b) => b.score - a.score);
+            renderLeaderboard();
+
+            showAlert(`Rahmat, ${studentName}! Topshiriq qabul qilindi va reytingingizga ball qo'shildi.`);
+            document.getElementById('student-submission').value = '';
+        }
+
+        // CSV eksport — Tyutor/O'qituvchi hisoboti
+        function exportDataCSV() {
+            const data = getData();
+            let csvContent = "data:text/csv;charset=utf-8,Fan,Turi,Mavzu,O'qituvchi,Sana\n";
+            data.forEach(d => {
+                csvContent += `"${d.subject}","${d.type}","${d.title}","${d.teacher}","${d.date}"\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "EduSphere_Hisobot.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function renderLeaderboard() {
+            const container = document.getElementById('leaderboard-list');
+            const medals = ['🥇', '🥈', '🥉'];
+            container.innerHTML = leaderboard.slice(0, 5).map((user, idx) => `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>${medals[idx] || (idx + 1) + '.'} ${user.name}</span>
+                    <b style="color: var(--success);">${user.score} ball</b>
+                </div>
+            `).join('');
         }
 
         function renderWorkspace() {
@@ -587,7 +739,6 @@
             const search = document.getElementById('search-box').value.toLowerCase();
             const data = getData();
 
-            // Sanash ko'rsatkichlari
             document.getElementById('total-entries').innerText = data.length + " ta";
             document.getElementById('count-all').innerText = data.length;
             document.getElementById('count-it').innerText = data.filter(d => d.subject === 'Dasturlash').length;
@@ -602,7 +753,7 @@
             });
 
             if (filtered.length === 0) {
-                container.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary);">Hozircha hech qanday ma'lumot topilmadi.</div>`;
+                container.innerHTML = `<div style="text-align:center; padding: 2.5rem; color: var(--text-secondary);">Ma'lumot topilmadi.</div>`;
                 return;
             }
 
@@ -615,8 +766,12 @@
                     <div class="feed-title">${item.title}</div>
                     <div class="feed-desc">${item.desc}</div>
                     <div class="feed-actions">
-                        <button class="btn-outline"><i class="fa-solid fa-cloud-arrow-down"></i> Materialni Ko'rish</button>
-                        <button class="btn-outline"><i class="fa-solid fa-paper-plane"></i> Javob Topshirish</button>
+                        <button class="btn-outline" onclick="openViewModal(${item.id})">
+                            <i class="fa-solid fa-book-open"></i> Materialni Ko'rish
+                        </button>
+                        <button class="btn-outline" style="border-color: rgba(99,102,241,0.5); color: #818cf8;" onclick="openSubmitModal(${item.id}, '${item.title.replace(/'/g, "\\'")}')">
+                            <i class="fa-solid fa-paper-plane"></i> Javob Topshirish
+                        </button>
                         <span style="margin-left: auto; font-size: 0.8rem; color: var(--text-secondary); align-self: center;">
                             <i class="fa-regular fa-calendar"></i> ${item.date}
                         </span>
@@ -625,6 +780,8 @@
             `).join('');
         }
 
+        // Boshlang'ich ishga tushirish
+        renderLeaderboard();
         renderWorkspace();
     </script>
 </body>
