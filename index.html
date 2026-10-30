@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduTutor — Raqamli Ta'lim Platformasi</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>EduSphere Pro — Barcha O'qituvchi va Talabalar Ekotizimi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-body: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.7);
-            --border-card: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-green: #10b981;
-            --accent-amber: #f59e0b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0b0f19;
+            --card-bg: rgba(23, 32, 54, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
         }
 
         * {
@@ -26,25 +27,23 @@
             margin: 0;
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
         }
 
         body {
-            background-color: var(--bg-body);
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
-            color: var(--text-main);
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+            color: var(--text-primary);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Header Navigation */
+        /* Top Navbar */
         header {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-card);
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -54,29 +53,22 @@
             align-items: center;
         }
 
-        .logo {
+        .brand {
             display: flex;
             align-items: center;
             gap: 12px;
             font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #818cf8, #c084fc);
+            font-weight: 800;
+            background: linear-gradient(135deg, #818cf8, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .logo i {
-            color: var(--primary);
-            -webkit-text-fill-color: initial;
-            font-size: 1.8rem;
         }
 
         .role-switch-container {
             background: rgba(255, 255, 255, 0.05);
             padding: 4px;
             border-radius: 12px;
-            border: 1px solid var(--border-card);
+            border: 1px solid var(--card-border);
             display: flex;
             gap: 4px;
         }
@@ -84,12 +76,12 @@
         .role-btn {
             background: transparent;
             border: none;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -97,99 +89,120 @@
 
         .role-btn.active {
             background: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
         }
 
-        /* Layout Container */
-        .main-container {
-            max-width: 1200px;
+        /* Container Layout */
+        .wrapper {
+            max-width: 1280px;
             margin: 2rem auto;
             padding: 0 1.5rem;
-            width: 100%;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
         }
 
-        /* Analytics Overview Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .stat-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: rgba(79, 70, 229, 0.15);
-            color: var(--primary);
-        }
-
-        .stat-info h4 {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .stat-info .value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 4px;
-        }
-
-        /* Dashboard Main Content Area */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .content-grid {
+        @media (max-width: 960px) {
+            .wrapper {
                 grid-template-columns: 1fr;
             }
         }
 
-        .glass-panel {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-card);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .panel-header {
+        /* Sidebar Navigation & Filters */
+        .sidebar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.25rem;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .panel-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .card-header {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .filter-btn {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #fff;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Main Workspace */
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Platform Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
+        .stat-title {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .stat-val {
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         /* Form Inputs */
@@ -199,28 +212,29 @@
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
             margin-bottom: 6px;
+            font-weight: 500;
         }
 
-        input[type="text"], textarea, select {
+        input, textarea, select {
             width: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-card);
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid var(--card-border);
             border-radius: 10px;
             padding: 10px 14px;
-            color: var(--text-main);
+            color: var(--text-primary);
             font-size: 0.9rem;
             outline: none;
         }
 
         input:focus, textarea:focus, select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
         }
 
-        .btn-submit {
+        .btn-action {
             width: 100%;
             background: var(--primary);
             color: white;
@@ -233,323 +247,385 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            margin-top: 0.5rem;
         }
 
-        .btn-submit:hover {
+        .btn-action:hover {
             background: var(--primary-hover);
-            transform: translateY(-1px);
         }
 
-        /* Post & Feed Items */
-        .feed-search {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .feed-search i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .feed-search input {
-            padding-left: 36px;
-        }
-
-        .feed-list {
+        /* Feed Elements */
+        .feed-container {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
 
-        .post-card {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
+        .feed-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
             padding: 1.25rem;
-            position: relative;
         }
 
-        .post-card:hover {
-            border-color: rgba(79, 70, 229, 0.4);
-            transform: translateX(4px);
+        .feed-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
         }
 
-        .post-meta {
+        .feed-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
         }
 
-        .badge {
-            font-size: 0.75rem;
+        .subject-badge {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent);
             padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
-        .badge-announcement { background: rgba(79, 70, 229, 0.2); color: #818cf8; }
-        .badge-assignment { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-
-        .post-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .post-body {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .post-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 8px;
-        }
-
-        .author-info {
+        .feed-teacher {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        .feed-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .feed-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .feed-actions {
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid var(--card-border);
+            padding-top: 10px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        /* Interactive Quiz Card */
+        .quiz-option {
+            background: rgba(11, 15, 25, 0.5);
+            border: 1px solid var(--card-border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 6px 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
-        <div class="logo">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>EduTutor</span>
+        <div class="brand">
+            <i class="fa-solid fa-shapes"></i>
+            <span>EduSphere Pro</span>
         </div>
         <div class="role-switch-container">
-            <button class="role-btn active" id="btn-student" onclick="switchRole('student')">
-                <i class="fa-solid fa-user-graduate"></i> Talaba
+            <button class="role-btn active" id="btn-student" onclick="setRole('student')">
+                <i class="fa-solid fa-graduation-cap"></i> Talaba
             </button>
-            <button class="role-btn" id="btn-tutor" onclick="switchRole('tutor')">
-                <i class="fa-solid fa-chalkboard-user"></i> Tyutor: Avazbek Azimov
+            <button class="role-btn" id="btn-teacher" onclick="setRole('teacher')">
+                <i class="fa-solid fa-chalkboard-user"></i> O'qituvchi Kabineti
             </button>
         </div>
     </header>
 
-    <div class="main-container">
+    <div class="wrapper">
         
-        <!-- Metrics Bar -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                <div class="stat-info">
-                    <h4>E'lonlar & Topshiriqlar</h4>
-                    <div class="value" id="stat-posts-count">0</div>
-                </div>
+        <!-- Chap Panel: Fanlar va O'qituvchilar filtri -->
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-header"><i class="fa-solid fa-layer-group"></i> Fanlar Bo'yicha</div>
+                <button class="filter-btn active" onclick="filterSubject('all')">
+                    <span>Barcha Fanlar</span> <span id="count-all">0</span>
+                </button>
+                <button class="filter-btn" onclick="filterSubject('Dasturlash')">
+                    <span>Dasturlash (IT)</span> <span id="count-it">0</span>
+                </button>
+                <button class="filter-btn" onclick="filterSubject('Oliy Matematika')">
+                    <span>Oliy Matematika</span> <span id="count-math">0</span>
+                </button>
+                <button class="filter-btn" onclick="filterSubject('Fizika')">
+                    <span>Fizika</span> <span id="count-physics">0</span>
+                </button>
+                <button class="filter-btn" onclick="filterSubject('Kiberxavfsizlik')">
+                    <span>Kiberxavfsizlik</span> <span id="count-sec">0</span>
+                </button>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green);">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <div class="stat-info">
-                    <h4>Barcha Talabalar</h4>
-                    <div class="value">28 ta</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-                <div class="stat-info">
-                    <h4>O'zlashtirish</h4>
-                    <div class="value">94.2%</div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Dashboard Layout -->
-        <div class="content-grid">
-            
-            <!-- Side Panel -->
-            <div class="glass-panel" id="side-panel">
-                <div class="panel-header">
-                    <span class="panel-title" id="panel-action-title">
-                        <i class="fa-solid fa-plus-circle"></i> Yangi e'lon
-                    </span>
-                </div>
-                
-                <!-- Tutor Form -->
-                <form id="post-form" onsubmit="handlePostSubmit(event)">
+            <!-- O'qituvchi boshqaruv paneli -->
+            <div class="card" id="teacher-tools" style="display: none;">
+                <div class="card-header"><i class="fa-solid fa-folder-plus"></i> Yangi Dars / Vazifa</div>
+                <form id="action-form" onsubmit="createEntry(event)">
                     <div class="form-group">
-                        <label>Post turi</label>
-                        <select id="post-type">
-                            <option value="E'lon">E'lon / Xabarnoma</option>
-                            <option value="Topshiriq">Amaliy Topshiriq</option>
+                        <label>O'qituvchi Ismi</label>
+                        <input type="text" id="teacher-name" value="Avazbek Azimov 👨‍🏫" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fanni tanlang</label>
+                        <select id="entry-subject">
+                            <option value="Dasturlash">Dasturlash (IT)</option>
+                            <option value="Oliy Matematika">Oliy Matematika</option>
+                            <option value="Fizika">Fizika</option>
+                            <option value="Kiberxavfsizlik">Kiberxavfsizlik</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Sarlavha</label>
-                        <input type="text" id="post-title" placeholder="Masalan: 1-Amaliy topshiriq" required>
+                        <label>Turini tanlang</label>
+                        <select id="entry-type">
+                            <option value="Vazifa">Amaliy Topshiriq / Laboratoriya</option>
+                            <option value="Material">Darslik / Ma'ruza Slaydi</option>
+                            <option value="E'lon">Muhim Xabarnoma</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Mavzu batafsil</label>
-                        <textarea id="post-content" rows="4" placeholder="Batafsil ko'rsatmalar va topshirish muddati..." required></textarea>
+                        <label>Mavzu / Topshiriq Nomi</label>
+                        <input type="text" id="entry-title" placeholder="Masalan: 3-Laboratoriya ishi" required>
                     </div>
-                    <button type="submit" class="btn-submit">
-                        <i class="fa-solid fa-paper-plane"></i> Chop etish
+                    <div class="form-group">
+                        <label>Tavsif va Yo'riqnoma</label>
+                        <textarea id="entry-content" rows="3" placeholder="Talabalar uchun ko'rsatmalar..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-action">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Tizimga Joylash
                     </button>
                 </form>
+            </div>
 
-                <!-- Student Info Notice -->
-                <div id="student-notice" style="display: none; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
-                    <p><i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> Siz talaba rejimidasiz. Tyutor Avazbek Azimov tomonidan yuklangan barcha yangilik va topshiriqlarni kuzatib boring.</p>
+            <!-- Reyting (Leaderboard) -->
+            <div class="card">
+                <div class="card-header"><i class="fa-solid fa-trophy" style="color: var(--warning);"></i> Top Talabalar</div>
+                <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>🥇 Akmal Rustamov</span>
+                        <b style="color: var(--success);">98 ball</b>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>🥈 Madina Karimova</span>
+                        <b style="color: var(--success);">95 ball</b>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>🥉 Jasur Ergashev</span>
+                        <b style="color: var(--success);">92 ball</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- O'ng Tomon: Asosiy Maydon -->
+        <div class="workspace">
+            
+            <!-- Statistika ko'rsatkichlari -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <div>
+                        <div class="stat-title">O'qituvchilar</div>
+                        <div class="stat-val">12 ta</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon" style="color: var(--accent); background: rgba(6, 182, 212, 0.2);">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <div class="stat-title">Faol Talabalar</div>
+                        <div class="stat-val">340+</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon" style="color: var(--success); background: rgba(16, 185, 129, 0.2);">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div>
+                        <div class="stat-title">Topshiriqlar</div>
+                        <div class="stat-val" id="total-entries">0 ta</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Feed Panel -->
-            <div class="glass-panel">
-                <div class="panel-header">
-                    <span class="panel-title"><i class="fa-solid fa-stream"></i> EduTutor Muloqot va Xabarlar</span>
+            <!-- Materiallar va Topshiriqlar Lentalari -->
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <div class="card-header" style="margin-bottom: 0;">
+                        <i class="fa-solid fa-graduation-cap"></i> Markaziy Ta'lim Oqimi
+                    </div>
+                    <input type="text" id="search-box" placeholder="Qidiruv..." style="width: 220px;" oninput="renderWorkspace()">
                 </div>
 
-                <div class="feed-search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="search-input" placeholder="E'lonlar bo'yicha qidirish..." oninput="renderPosts()">
-                </div>
-
-                <div class="feed-list" id="feed-container">
-                    <!-- Posts will render dynamically -->
+                <div class="feed-container" id="workspace-feed">
+                    <!-- Dinamik ravishda postlar chiqadi -->
                 </div>
             </div>
 
         </div>
+
     </div>
 
-    <!-- Application Script Logic -->
     <script>
+        let currentSubject = 'all';
         let currentRole = 'student';
-        
-        // Initial Demo Data
-        const initialPosts = [
+
+        // Boshlang'ich universal ma'lumotlar
+        const defaultData = [
             {
                 id: 1,
-                type: "E'lon",
-                title: "O'quv xonasi haqida muhim eslatma",
-                content: "Hurmatli talabalar, ertangi amaliy mashg'ulot 2-bino 304-auditoriyada bo'lib o'tadi.",
-                author: "Avazbek Azimov 👨‍🏫",
-                date: "2026-10-28 08:30"
+                subject: "Dasturlash",
+                type: "Vazifa",
+                teacher: "Avazbek Azimov 👨‍🏫",
+                title: "Python orqali ma'lumotlar bazasi bilan ishlash",
+                desc: "SQLite va PostgreSQL bazalariga ulanish hamda CRUD amallarini bajarish bo'yicha amaliy ish topshirig'i. Bajarish muddati: 3 kun.",
+                date: "2026-10-30"
             },
             {
                 id: 2,
-                type: "Topshiriq",
-                title: "Dasturiy prototip topshirig'i",
-                content: "EduTutor veb-platformasi bo'yicha berilgan topshiriqlarni yakunlab, hisobotni tayyorlang. Muddat: Shanbagacha.",
-                author: "Avazbek Azimov 👨‍🏫",
-                date: "2026-10-28 08:00"
+                subject: "Oliy Matematika",
+                type: "Material",
+                teacher: "Dots. N. Qodirov",
+                title: "Differensial tenglamalar: 4-Ma'ruza taqdimoti",
+                desc: "Ushbu faylda yuqori tartibli chiziqli differensial tenglamalar va ularni integrallash usullari batafsil keltirilgan.",
+                date: "2026-10-29"
+            },
+            {
+                id: 3,
+                subject: "Kiberxavfsizlik",
+                type: "E'lon",
+                teacher: "Prof. S. Aliyev",
+                title: "Xalqaro CTF tanloviga saralash",
+                desc: "Kiberxavfsizlik bo'yicha qiziquvchi barcha kurs talabalari uchun saralash bosqichi boshlandi. Ro'yxatdan o'ting.",
+                date: "2026-10-28"
             }
         ];
 
-        function getPosts() {
-            const data = localStorage.getItem('edututor_posts');
-            return data ? JSON.parse(data) : initialPosts;
+        function getData() {
+            const stored = localStorage.getItem('edusphere_entries');
+            return stored ? JSON.parse(stored) : defaultData;
         }
 
-        function savePosts(posts) {
-            localStorage.setItem('edututor_posts', JSON.stringify(posts));
+        function saveData(data) {
+            localStorage.setItem('edusphere_entries', JSON.stringify(data));
         }
 
-        function switchRole(role) {
+        function setRole(role) {
             currentRole = role;
             document.getElementById('btn-student').classList.toggle('active', role === 'student');
-            document.getElementById('btn-tutor').classList.toggle('active', role === 'tutor');
-            
-            const postForm = document.getElementById('post-form');
-            const studentNotice = document.getElementById('student-notice');
-            const panelTitle = document.getElementById('panel-action-title');
-
-            if(role === 'tutor') {
-                postForm.style.display = 'block';
-                studentNotice.style.display = 'none';
-                panelTitle.innerHTML = `<i class="fa-solid fa-plus-circle"></i> Yangi e'lon yaratish`;
-            } else {
-                postForm.style.display = 'none';
-                studentNotice.style.display = 'block';
-                panelTitle.innerHTML = `<i class="fa-solid fa-user-check"></i> Talaba Paneli`;
-            }
+            document.getElementById('btn-teacher').classList.toggle('active', role === 'teacher');
+            document.getElementById('teacher-tools').style.display = (role === 'teacher') ? 'block' : 'none';
         }
 
-        function handlePostSubmit(e) {
-            e.preventDefault();
-            const type = document.getElementById('post-type').value;
-            const title = document.getElementById('post-title').value;
-            const content = document.getElementById('post-content').value;
+        function filterSubject(sub) {
+            currentSubject = sub;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            renderWorkspace();
+        }
 
-            const newPost = {
+        function createEntry(e) {
+            e.preventDefault();
+            const teacher = document.getElementById('teacher-name').value;
+            const subject = document.getElementById('entry-subject').value;
+            const type = document.getElementById('entry-type').value;
+            const title = document.getElementById('entry-title').value;
+            const desc = document.getElementById('entry-content').value;
+
+            const newItem = {
                 id: Date.now(),
+                subject: subject,
                 type: type,
+                teacher: teacher,
                 title: title,
-                content: content,
-                author: "Avazbek Azimov 👨‍🏫",
-                date: new Date().toISOString().replace('T', ' ').substring(0, 16)
+                desc: desc,
+                date: new Date().toISOString().substring(0, 10)
             };
 
-            const posts = getPosts();
-            posts.unshift(newPost);
-            savePosts(posts);
+            const data = getData();
+            data.unshift(newItem);
+            saveData(data);
 
-            document.getElementById('post-title').value = '';
-            document.getElementById('post-content').value = '';
-
-            renderPosts();
+            document.getElementById('entry-title').value = '';
+            document.getElementById('entry-content').value = '';
+            renderWorkspace();
         }
 
-        function renderPosts() {
-            const container = document.getElementById('feed-container');
-            const searchQuery = document.getElementById('search-input').value.toLowerCase();
-            const posts = getPosts();
+        function renderWorkspace() {
+            const container = document.getElementById('workspace-feed');
+            const search = document.getElementById('search-box').value.toLowerCase();
+            const data = getData();
 
-            const filteredPosts = posts.filter(p => 
-                p.title.toLowerCase().includes(searchQuery) || 
-                p.content.toLowerCase().includes(searchQuery)
-            );
+            // Sanash ko'rsatkichlari
+            document.getElementById('total-entries').innerText = data.length + " ta";
+            document.getElementById('count-all').innerText = data.length;
+            document.getElementById('count-it').innerText = data.filter(d => d.subject === 'Dasturlash').length;
+            document.getElementById('count-math').innerText = data.filter(d => d.subject === 'Oliy Matematika').length;
+            document.getElementById('count-physics').innerText = data.filter(d => d.subject === 'Fizika').length;
+            document.getElementById('count-sec').innerText = data.filter(d => d.subject === 'Kiberxavfsizlik').length;
 
-            document.getElementById('stat-posts-count').innerText = posts.length + " ta";
+            const filtered = data.filter(item => {
+                const matchesSubject = (currentSubject === 'all') || (item.subject === currentSubject);
+                const matchesSearch = item.title.toLowerCase().includes(search) || item.desc.toLowerCase().includes(search) || item.teacher.toLowerCase().includes(search);
+                return matchesSubject && matchesSearch;
+            });
 
-            if(filteredPosts.length === 0) {
-                container.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 2rem;">Ma'lumot topilmadi.</p>`;
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary);">Hozircha hech qanday ma'lumot topilmadi.</div>`;
                 return;
             }
 
-            container.innerHTML = filteredPosts.map(post => `
-                <div class="post-card">
-                    <div class="post-meta">
-                        <span class="badge ${post.type === 'Topshiriq' ? 'badge-assignment' : 'badge-announcement'}">
-                            ${post.type}
-                        </span>
-                        <span><i class="fa-regular fa-clock"></i> ${post.date}</span>
+            container.innerHTML = filtered.map(item => `
+                <div class="feed-card">
+                    <div class="feed-top">
+                        <span class="subject-badge">${item.subject} • ${item.type}</span>
+                        <span class="feed-teacher"><i class="fa-solid fa-user-tie"></i> ${item.teacher}</span>
                     </div>
-                    <div class="post-title">${post.title}</div>
-                    <div class="post-body">${post.content}</div>
-                    <div class="post-footer">
-                        <div class="author-info">
-                            <i class="fa-solid fa-chalkboard-user" style="color: var(--primary)"></i> ${post.author}
-                        </div>
-                        <div><i class="fa-solid fa-shield-halved"></i> EduTutor Hub</div>
+                    <div class="feed-title">${item.title}</div>
+                    <div class="feed-desc">${item.desc}</div>
+                    <div class="feed-actions">
+                        <button class="btn-outline"><i class="fa-solid fa-cloud-arrow-down"></i> Materialni Ko'rish</button>
+                        <button class="btn-outline"><i class="fa-solid fa-paper-plane"></i> Javob Topshirish</button>
+                        <span style="margin-left: auto; font-size: 0.8rem; color: var(--text-secondary); align-self: center;">
+                            <i class="fa-regular fa-calendar"></i> ${item.date}
+                        </span>
                     </div>
                 </div>
             `).join('');
         }
 
-        switchRole('student');
-        renderPosts();
+        renderWorkspace();
     </script>
 </body>
 </html>
